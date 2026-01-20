@@ -2,14 +2,14 @@
 <b>AlphaApollo: A System for Deep Agentic Reasoning</b>
 </h1>
 
-<!-- <p align="center">
-  <img src="src/AlphaApollo_logo.png" height="150">
+<p align="center">
+  <a href="https://alphaapollo.org/">
+    <img src="https://img.shields.io/badge/Project%20Website-deepinception" />
+  </a>
+  <a href="https://arxiv.org/abs/2510.06261">
+    <img src="https://img.shields.io/badge/arXiv-2510.06261-b31b1b" />
+  </a>
 </p>
-
-<h1 align="center">
-  AlphaApollo: A System for Deep Agentic Reasoning
-</h1> -->
-
 
 
 AlphaApollo is an agentic reasoning framework that integrates multiple models and tools to enable iterative, verifiable, and self-evolving reasoning.
