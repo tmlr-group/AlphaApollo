@@ -3,12 +3,8 @@
 </h1>
 
 <p align="center">
-  <a href="https://alphaapollo.org/">
-    <img src="https://img.shields.io/badge/Project%20Website-deepinception" />
-  </a>
-  <a href="https://arxiv.org/abs/2510.06261">
-    <img src="https://img.shields.io/badge/arXiv-2510.06261-b31b1b" />
-  </a>
+  <a href="https://alphaapollo.org/"><img src="https://img.shields.io/badge/Project%20Website-AlphaApollo"></a>
+  <a href="https://arxiv.org/abs/2510.06261"><img src="https://img.shields.io/badge/arXiv-2510.06261-b31b1b"></a>
 </p>
 
 
