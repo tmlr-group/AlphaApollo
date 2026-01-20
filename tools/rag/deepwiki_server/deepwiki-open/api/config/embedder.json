@@ -1,0 +1,21 @@
+{
+  "embedder": {
+    "client_class": "OpenAIClient",
+    "initialize_kwargs": {
+      "base_url": "http://localhost:10088/v1/",
+      "api_key": "1234"
+    },
+    "batch_size": 256,
+    "model_kwargs": {
+      "model": "/data0/models/models--Qwen--Qwen3-Embedding-8B/snapshots/1d8ad4ca9b3dd8059ad90a75d4983776a23d44af/"
+    }
+  },
+  "retriever": {
+    "top_k": 25
+  },
+  "text_splitter": {
+    "split_by": "word",
+    "chunk_size": 1000,
+    "chunk_overlap": 200
+  }
+}

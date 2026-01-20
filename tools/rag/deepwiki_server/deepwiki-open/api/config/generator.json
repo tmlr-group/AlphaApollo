@@ -1,0 +1,19 @@
+{
+  "default_provider": "openai",
+  "providers": {
+    "openai": {
+      "default_model": "Qwen/Qwen3-4B",
+      "supportsCustomModel": true,
+      "models": {
+        "Qwen/Qwen3-4B": {
+          "temperature": 0.7,
+          "top_p": 0.8
+        },
+        "glm-4.5": {
+          "temperature": 0.7,
+          "top_p": 0.8
+        }
+      }
+    }
+  }
+}

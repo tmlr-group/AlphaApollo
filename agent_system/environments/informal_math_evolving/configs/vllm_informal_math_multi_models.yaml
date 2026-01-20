@@ -1,0 +1,108 @@
+run:
+  tag: default
+  dataset_name: aime24 # Sub-folder inside data_root
+  file_name: test.parquet # Dataset file to evaluate
+  data_root: ./data/math-ai/ # Base directory for datasets
+  policy_env_num: 1 # Number of parallel environments per branch
+  verifier_env_num: 5 # Number of parallel environments for verifier # NOTE: make sure odd to ensure majority judgment
+  test_times: 1 # Number of passes over the dataset
+
+env:
+  name: informal_math_evolving
+  group_n: 1 # Batch size for grouped environments
+  config:
+    informal_math_evolving:
+      evolving_round: 10
+      log_requests: false # Log env/model interactions
+      python_code_timeout: 300 # Seconds allowed for python_code tool
+      enable_verify: true # Allow verifier orchestration
+      concurrency:
+        verifier_max_workers: 5 # Max parallel workers for verifier actions (0 = sequential)
+        problem_max_workers: 30 # Max parallel workers for problem execution (0 = sequential)
+        branch_max_workers: 2 # Max parallel workers for K-branch execution (0 = sequential)
+      nd_memory:
+        scored_history_length: 3
+      policy_env:
+        max_steps: 4
+        history_length: 4
+        memory_type: simple # simple | score | ndimensional
+        enable_python_code: true
+      verifier_env:
+        max_steps: 4
+        history_length: 4
+        memory_type: simple
+        enable_python_code: true
+
+# ============================================================
+# Model Definitions (reusable YAML anchors)
+# ============================================================
+
+vllm_qwen3: &vllm_qwen3
+  model_name: "qwen3_4b_inst"
+  base_url: "http://localhost:8000/v1"
+  api_key: "EMPTY"
+
+vllm_qwen25: &vllm_qwen25
+  model_name: "qwen2_5_14b_inst"
+  base_url: "http://localhost:8001/v1"
+  api_key: "EMPTY"
+
+# ============================================================
+# Default Shared Verifier (used when branch doesn't specify one)
+# ============================================================
+
+default_verifier_cfg:
+  <<: *vllm_qwen3
+  temperature: 0.4
+  max_tokens: 8192
+  system_prompt: ""
+
+# ============================================================
+# K-Branches Configuration
+# Each branch can use a different (or same) policy model
+# Each branch can have its own verifier or use the default shared verifier
+# All branches share a thread-safe solution_memory for real-time cross-pollination
+# ============================================================
+
+branches:
+  - branch_id: "qwen25_branch_temp_0.7"
+    policy_model_cfg:
+      <<: *vllm_qwen25
+      temperature: 0.7
+      max_tokens: 8192
+      system_prompt: ""
+    verifier_cfg: 
+      <<: *vllm_qwen25
+      temperature: 0.4
+      max_tokens: 8192
+      system_prompt: ""
+
+  - branch_id: "qwen3_branch_temp_0.7"
+    policy_model_cfg:
+      <<: *vllm_qwen3
+      temperature: 0.7
+      max_tokens: 8192
+      system_prompt: ""
+    verifier_cfg: 
+      <<: *vllm_qwen3
+      temperature: 0.4
+      max_tokens: 8192
+      system_prompt: ""
+
+# ============================================================
+# Legacy Single-Model Config (for backward compatibility)
+# These are kept for backward compatibility and will be auto-converted
+# to a single branch if 'branches' is not present in the config
+# ============================================================
+
+policy_model_cfg:
+  <<: *vllm_qwen3
+  temperature: 0.7
+  max_tokens: 8192
+  system_prompt: "" # currently not used, check prompts in agent_system/environments/prompts/informal_math.py
+
+verifier_cfg:
+  <<: *vllm_qwen3
+  temperature: 0.4
+  max_tokens: 8192
+  system_prompt: "" # currently not used, check prompts in agent_system/environments/prompts/informal_math.py

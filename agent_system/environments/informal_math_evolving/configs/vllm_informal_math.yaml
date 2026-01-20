@@ -1,0 +1,52 @@
+run:
+  tag: default
+  dataset_name: aime24 # Sub-folder inside data_root
+  file_name: test.parquet # Dataset file to evaluate
+  data_root: ./data/math-ai/ # Base directory for datasets
+  policy_env_num: 1 # Number of parallel environments
+  verifier_env_num: 5 # Number of parallel environments for verifier # NOTE: make sure the number of verifier environment to be odd to ensure the majority judgment
+  test_times: 1 # Number of passes over the dataset
+
+env:
+  name: informal_math_evolving
+  group_n: 1 # Batch size for grouped environments
+  config:
+    informal_math_evolving:
+      evolving_round: 10
+      log_requests: false # Log env/model interactions
+      python_code_timeout: 300 # Seconds allowed for python_code tool
+      enable_verify: true # Allow verifier orchestration
+      concurrency:
+        verifier_max_workers: 5 # Max parallel workers for verifier actions (0 = sequential)
+        problem_max_workers: 30 # Max parallel workers for problem execution (0 = sequential)
+      nd_memory:
+        scored_history_length: 3
+      policy_env:
+        max_steps: 4
+        history_length: 4
+        memory_type: simple # simple | score | ndimensional
+        enable_python_code: true
+        enable_local_rag: true # Set to true to enable python+rag tool setting
+      verifier_env:
+        max_steps: 4
+        history_length: 4
+        memory_type: simple
+        enable_python_code: true
+        enable_local_rag: true # Set to true to enable python+rag tool setting
+
+vllm_config: &vllm_config
+  model_name: "qwen3_4b_inst"
+  base_url: "http://localhost:8000/v1"
+  api_key: "EMPTY"
+
+policy_model_cfg:
+  <<: *vllm_config
+  temperature: 0.7
+  max_tokens: 8192
+  system_prompt: "" # currently not used, check prompts in agent_system/environments/prompts/informal_math.py
+
+verifier_cfg:
+  <<: *vllm_config
+  temperature: 0.4
+  max_tokens: 8192
+  system_prompt: "" # currently not used, check prompts in agent_system/environments/prompts/informal_math.py

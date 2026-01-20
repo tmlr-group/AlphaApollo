@@ -1,0 +1,44 @@
+# =============================================================================
+# RAG System Configuration (Unified Config)
+# =============================================================================
+
+# Service Ports
+ports:
+  rag_api: 10086
+  vllm_embed: 10088
+  vllm_chat: 10089
+
+# Model Configuration
+models:
+  chat:
+    path: "Qwen/Qwen3-8B"
+    max_model_len: 32768
+    gpu_memory_utilization: 0.5
+  embedding:
+    path: "Qwen/Qwen3-Embedding-8B"
+    gpu_memory_utilization: 0.45
+
+# GPU Configuration
+gpu:
+  cuda_visible_devices: "5"
+
+# Timeout Configuration (seconds)
+timeouts:
+  chat_ready: 300
+  embed_ready: 300
+  rag_api_ready: 60
+
+# RAG Retriever Configuration
+retriever:
+  top_k: 25
+
+# Text Splitter Configuration
+text_splitter:
+  split_by: "word"
+  chunk_size: 1000
+  chunk_overlap: 200
+
+# Embedder Configuration
+embedder:
+  batch_size: 256
+  api_key: "1234"
