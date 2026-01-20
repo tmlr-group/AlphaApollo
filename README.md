@@ -30,7 +30,7 @@ AlphaApollo also offers flexible and extensible agentic environments and tool-se
 conda create -n alphaapollo python==3.12 -y
 conda activate alphaapollo
 
-git clone TBD
+git clone https://github.com/tmlr-group/AlphaApollo.git
 cd AlphaApollo
 
 bash installation.sh
