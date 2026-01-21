@@ -349,12 +349,6 @@ class TrajectoryCollector:
             batch.non_tensor_batch['traj_uid'] = traj_uid
 
             batch = batch.union(batch_output)
-
-            # NOTE FX: 大家可以把batch保存下来方便查看输入和输出
-            # import pickle
-            # with open(f"batch.pkl", "wb") as f:
-            #     pickle.dump(batch, f)
-            # raise Exception("Stop here")
             
             text_actions = self.tokenizer.batch_decode(batch.batch['responses'], skip_special_tokens=True)
             
