@@ -173,10 +173,10 @@ If you find **AlphaApollo** useful in your research, please consider citing our 
 
 ```
 @article{zhou2025alphaapollo,
-  title={AlphaApollo: Orchestrating Foundation Models and Professional Tools into a Self-Evolving System for Deep Agentic Reasoning},
-  author={Zhou, Zhanke and Cao, Chentao and Feng, Xiao and Li, Xuan and Li, Zongze and Lu, Xiangyu and Yao, Jiangchao and Huang, Weikai and Xu, Linrui and Cheng, Tian and others},
-  journal={arXiv preprint arXiv:2510.06261},
-  year={2025}
+  title = {{AlphaApollo}: A System for Deep Agentic Reasoning},
+  author = {Zhou, Zhanke and Cao, Chentao and Feng, Xiao and Li, Xuan and Li, Zongze and Lu, Xiangyu and Yao, Jiangchao and Huang, Weikai and Cheng, Tian and Zhang, Jianghangfan and Jiang, Tangyu and Xu, Linrui and Zheng, Yiming and Miranda, Brando and Liu, Tongliang and Koyejo, Sanmi and Sugiyama, Masashi and Han, Bo},
+  journal = {arXiv preprint arXiv:2510.06261},
+  year = {2025}
 }
 ```
 
