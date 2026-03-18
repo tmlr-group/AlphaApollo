@@ -78,7 +78,7 @@ python3 -m alphaapollo.workflows.test \
   --preprocess.data_source=math-ai/aime24 \
   --preprocess.splits=test \
   --preprocess.sample_indices=0 \
-  --data.path=~/data/custom_data/test.parquet
+  --data.path=./data/custom_data/test.parquet
 ```
 ```bash
 # Directly evaluate a plain text question (not from a dataset)
@@ -87,7 +87,7 @@ python3 -m alphaapollo.workflows.test \
   --preprocess.module=alphaapollo.data_preprocess.prepare_single_question \
   --preprocess.question_text="What is the sum of integers from 1 to 1000?" \
   --preprocess.ground_truth="500500" \
-  --data.path=~/data/single_question/test.parquet
+  --data.path=./data/single_question/test.parquet
 ```
 
 ### Agentic learning

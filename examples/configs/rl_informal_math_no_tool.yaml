@@ -62,7 +62,7 @@ runner:
     - env.informal_math.enable_local_rag=false
     - trainer.critic_warmup=0
     - trainer.logger=['console','wandb']
-    - trainer.project_name=verl_agent_informalmath
+    - trainer.project_name=alphaapollo_informalmath
     - trainer.experiment_name=grpo_qwen2.5_3b
     - trainer.n_gpus_per_node=2
     - trainer.nnodes=1

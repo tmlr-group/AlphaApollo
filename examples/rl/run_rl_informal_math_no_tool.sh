@@ -17,7 +17,7 @@ export HF_DATASETS_CACHE=$HOME/.cache/datasets
 
 # NOTE: this is the model path in my environment, you need to change it to your own model path.
 model_path=Qwen/Qwen2.5-3B-Instruct
-project_name='verl_agent_informalmath'
+project_name='alphaapollo_informalmath'
 experiment_name='grpo_qwen2.5_3b'
 
 # We only use data preparation to indicate the modality and the data size.
