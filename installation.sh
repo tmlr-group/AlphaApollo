@@ -9,3 +9,4 @@ pip install peft==0.15.2
 pip install ray==2.47.1
 pip install multiprocess==0.70.16 fire gymnasium gym rdkit colorlog
 pip install botocore
+pip install "opentelemetry-exporter-prometheus==0.47b0"
