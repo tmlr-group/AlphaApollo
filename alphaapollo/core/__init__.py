@@ -3,7 +3,6 @@ from __future__ import annotations
 import sys
 import types
 from importlib import import_module
-from importlib.util import find_spec
 from pathlib import Path
 
 
@@ -268,5 +267,4 @@ def _ensure_multi_turn_rollout_alias() -> None:
     sys.modules[legacy_name] = real_pkg
 
 
-if find_spec("pkg_resources") is not None:
-    ensure_verl_alias()
+ensure_verl_alias()
